@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reference SNP (refSNP) Cluster Report: rs9606708&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</title>
+<link rel="stylesheet" type="text/css" href="/core/extjs/ext-3.4.2/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="/core/extjs/ext-3.4.2/resources/css/xtheme-gray.css" id="theme">
+<link rel="stylesheet" type="text/css" href="/projects/sviewer/css/style.css" media="screen, projection, print"/>
+<link rel="stylesheet" href="CSS/gv.css"/> 
+
+<script type='text/javascript' src='common.js'></script>
+<script type='text/javascript' src='css.js'></script>
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+<meta name="ncbi_sessionid" content="07515F043B31CF4D_0001SID" />
+<meta name="ncbi_phid" content="07515F043B31CF4D0000000000011CF4" />
+
+<script type='text/javascript' src='/core/extjs/ext-3.4.2/adapter/ext/ext-base.js'></script>
+<script type='text/javascript' src='/core/extjs/ext-3.4.2/ext-all.js'></script>
+<script type="text/javascript" src="/projects/sviewer/js/sviewer.js"></script>
+
+<script type="text/javascript" src="/core/jig/1.13/js/jig.min.js"></script>
+    <script src="Javascripts/jquery.xml2json.js" type="text/javascript"></script> 
+    <script src="Javascripts/gv.js" type="text/javascript"></script> 
+<script type="text/javascript">
+        function getURLParameter(name) {
+            return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+        }
+        // progagate connect param to snp_gene.cgi
+        var connectStr = getURLParameter('connect');
+        if (connectStr === null) {
+            connectStr = '';
+        }
+
+        $J(function(){$J.ajax ({ url:"/projects/SNP/snp_gene.cgi", dataType: 'text', data: {"rs":9606708, "connect":connectStr}, success:function( data, status) {fnProcessResponse (data, status)}, error:function( obj, status, e ){ alert ("error: " + status) }, complete:function(obj, status){ }  });});
+    </script> 
+<SCRIPT language="javascript" type="text/javascript">
+
+  function openPopup(legendURL){
+
+  legend=window.open(legendURL,"_blank",
+      "height=300,width=350,left=300,top=300,scrollbars=1,resizable=1");
+  }
+</SCRIPT>
+  
+
+<!-- #BeginEditable "doctitle" --> 
+<!-- #EndEditable -->
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+	<META name="keywords" content="single nucleotide polymorphism, SNP,
+sequence variation, genome, gene mapping, population structure, dbSNP,
+evolution, microsatellite repeat, phenotype, national center for
+biotechnology information, ncbi, national library of medicine, nlm, database, 
+archive, bioinformatics, national institute of health, ncbi">
+	<META name="description" content="The Single Nucleotide Polymorphism
+database (dbSNP) is a public-domain archive for a broad collection of simple
+genetic polymorphisms.">
+	<META name="author" content="snpdev">
+	<META name="robots" content="index,nofollow,noarchive">
+	<meta http-equiv="Expires" content="Wed, 28 Jan 2006 01:01:01 GMT">
+
+        <meta name="ncbi_app" content="refSNP" />
+        <meta name="ncbi_db" content="dbSNP" />
+        <meta name="ncbi_pcid" content="detailed SNP report" />
+
+<!-- #BeginEditable "MetaRegion" -->
+<META name="robots" content="index,nofollow,ARCHIVE">
+<META NAME="keywords" CONTENT="SNP, Polymorphism, deletion, insertion, microsatellite, Indel, Haplotype, genotype, population, frequency">
+<META NAME="description" CONTENT="Database of Single Nucleotide Polymorphism">
+<!-- #EndEditable -->
+	
+<script language="JavaScript" src="http://www.ncbi.nlm.nih.gov:80/corehtml/query/query.js"></script>
+<script language="JavaScript" src="Javascripts/snputils.js"></script>
+<script src="Javascripts/prototype.js" type="text/javascript"></script>	
+<script language="JavaScript" src="Javascripts/cookies.js"></script>
+<script language="JavaScript" src="Javascripts/sidebar.js"></script>
+
+<link rel="stylesheet" href="http://www.ncbi.nlm.nih.gov/corehtml/ncbi.css">
+<link rel="stylesheet" href="snp.css" type="text/css">
+<link type="text/css" rel="stylesheet" href="http://www.ncbi.nlm.nih.gov/corehtml/ncbi_test.css">
+<link rel="stylesheet" href="CSS/gv.css"/> 
+
+<!-- #BeginEditable "JAVASCRIPT" --> 
+<script language="JavaScript" src="snpEntrez.js"></script>
+<SCRIPT language="JavaScript">
+//JAVASCRIPTS start here
+function TaxID()
+	{	
+		taxnum = document.freeform.TAXID.options[document.freeform.TAXID.selectedIndex].value;
+		querystr = document.freeform.querytext.value;
+		querystr = querystr + "[TAX_ID]=" + taxnum;
+	    document.freeform.querytext.value = querystr;
+    }
+function getSubID()
+	{
+		selection = document.searchID.Type;
+   		gettype = selection.options[selection.selectedIndex].value;
+		b = document.searchID.sub_id.value;
+		if (gettype == "dbSNP_rs")
+		{	
+			var numstr = /rs\d+$/;	
+    		if (!(b.match(numstr)) ) {
+   		    	alert (b + " is incorrect format!\nThe ID should have the prefix \"rs\" and a number \n (eg. rs23131)");
+				return false;}
+		}
+		if (gettype == "dbSNP_ss")
+		{
+			var numstr = /ss\d+$/;	
+    		if (!(b.match(numstr)) ) {
+   		    	alert (b + " is incorrect format!\nThe ID should have the prefix \"ss\" and a number \n (eg. ss23131)");
+				return false;}
+		}
+	}
+function getSTSname()
+	   {
+   		if ((document.STSSearch.STSname1.value == "") || (document.STSSearch.STSname2.value == ""))
+      		{
+      		alert("Please enter two STS markers!")
+      		document.STSSearch.STSname1.focus();
+      		return false;
+      		}
+      	else 
+      		{
+      		return true; 
+      		}
+   }
+	
+	
+</SCRIPT>
+<style type="text/css">
+<!--
+.style1 {color: #0000FF}
+-->
+</style>
+<!-- #EndEditable -->
+
+
+<script type="text/javascript" language="JavaScript">
+<!--
+	if (document.layers) { origWidth = window.innerWidth; origHeight = window.innerHeight; window.onresize = resizeFix; }
+	function resizeFix() {
+		if (document.layers && (window.innerWidth != origWidth || window.innerHeight != origHeight)) { window.history.go(0); }
+	}
+// -->
+</script>  
+		<script language="JavaScript1.2">
+		<!--
+		var PopUpMenu2_GlobalConfig = [
+		  ["UseThisGlobalConfig","yes"]
+		]
+		//-->
+		</script>
+		<script language="JavaScript1.2" src="/coreweb/javascript/popupmenu2/popupmenu2_7loader.js"></script> 
+
+</head>
+<body bgcolor="#FFFFFF" background="bkgd.gif" text="#000000" link="#CC6600" vlink="#CC6600" onLoad="">
+<!-- #BeginEditable "DHTML Items" --><!-- #EndEditable -->
+<!--  the header   -->
+<!--start of first table --><!-- #BeginLibraryItem "/Library/dbSNP_topbar.lbi" -->
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+.style2 {
+	font-size: 18px;
+	font-weight: bold;
+}
+-->
+</style>
+<img src="#maincontent" width="100%" height="1" alt="Skip to main content">
+<table width="615" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <!-- logo -->
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="135" align="left" bgcolor="#336699"><a href="http://www.ncbi.nlm.nih.gov"><img src="corehtml/left.GIF" width="130" height="45" border="0" alt="NCBI"></a><br>
+          </td>
+          <td align="left"><!-- #BeginLibraryItem "/Library/SNPlogo.lbi" --><img name="SNPlogo" src="Images/SNPlogo2_ver2.jpg" width="440" height="70" border="0" alt="dbSNP"><!-- #EndLibraryItem --><!-- #BeginLibraryItem "/Library/Alert.lbi" --><!-- #EndLibraryItem --></p></td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <!--site map-->
+    <td><table class="TEXT" border="0" cellspacing="0" cellpadding="2" bgcolor="#000000" width="100%">
+        <tr class="TEXT" align="CENTER">
+          <td><a href="/entrez/query.fcgi?db=PubMed" class="topbarHeading"><font color="#FFFFFF">PubMed</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=Nucleotide" class="topbarHeading"><font color="#FFFFFF">Nucleotide</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=Protein" class="topbarHeading"><font color="#FFFFFF">Protein</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=Genome" class="topbarHeading"><font color="#FFFFFF">Genome</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=Structure" class="topbarHeading"><font color="#FFFFFF">Structure</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=Popset" class="topbarHeading"><font color="#FFFFFF">PopSet</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=Taxonomy" class="topbarHeading"><font color="#FFFFFF">Taxonomy</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=OMIM" class="topbarHeading"><font color="#FFFFFF">OMIM</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=Books" class="topbarHeading"><font color="#FFFFFF">Books</font></a></td>
+          <td><a href="/entrez/query.fcgi?db=Snp" class="topbarHeading"><font color="#FFFFFF">SNP</font></a></td>
+        </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <!--query box-->
+    <td><table border="0" width="100%" cellspacing="0" cellpadding="2" bgcolor="#ccccff">
+        <form action="http://www.ncbi.nlm.nih.gov/coreutils/dispatch.cgi" method="post" name="Search" id="Search">
+          <tbody>
+            
+            <tr>
+              <td class="SMALL1"><div id="HintEntrezSnp" class="hintBox">Search for SNP on NCBI Reference Assembly</div><label for="Search">&nbsp;&nbsp;Search Entrez</label>
+                  <small>
+ <select name="db">
+   		    <option value="500">All Databases</option>
+			<option value="17">NCBI Web Site</option>
+			<option value="00">-------------</option>
+            <option value="0">PubMed</option>
+			<option value="1">Protein</option>
+            <option value="2">Nucleotide</option>
+			<option value="37">EST</option>
+			<option value="38">GSS</option>
+			<option value="3">Structure</option>
+
+			<option value="4">Genome</option>
+			<option value="8">Books</option>
+			<option value="23">CancerChromosomes</option>
+			<option value="14">Conserved Domains</option>
+			<option value="10">3D Domains</option>
+			<option value="21">Gene</option>
+
+			<option value="30">Genome Project</option>
+			<option value="34">dbGaP</option>
+			<option value="28">GENSAT</option>
+			<option value="19">GEO Profiles</option>
+			<option value="20">GEO Datasets</option>
+			<option value="22">HomoloGene</option>
+
+			<option value="15">Journals</option>
+			<option value="18">MeSH</option>
+		    <option value="24">NLM Catalog</option>
+			<option value="33">OMIA</option>
+			<option value="6">OMIM</option>
+			<option value="16">PMC</option>
+
+			<option value="5">PopSet</option>
+			<option value="29">Probe</option>
+            <option value="35">Protein Clusters</option>
+			<option value="25">PubChem BioAssay</option>
+			<option value="26">PubChem Compound</option>
+			<option value="27">PubChem Substance</option>
+
+			<option value="13" selected>SNP</option>
+            <option value="7">Taxonomy</option>
+			<option value="11">UniGene</option> 
+            <option value="12">UniSTS</option>  
+			 </select>
+                  </small>
+                  <label for="term">for</label>
+                  <input type="text" name="term" id="term" alt="search term" size="24">
+                  <input type="submit" name="submit" value="Go">
+                  <input type="hidden" name="SITE" value="NcbiHome"></td>
+            </tr>
+          </tbody>
+        </form>
+    </table></td>
+  </tr>
+  <tr>
+    <td><table width="615" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="153" bgcolor="#CCCCCC"><img src="corehtml/transparent.gif" width="130" height="1" alt="transparent GIF"></td>
+          <td width="462" bgcolor="#CCCCCC"><!-- toolbar -->
+          </td>
+        </tr>
+    </table></td>
+  </tr>
+</table>
+<!-- #EndLibraryItem --><!--end of first table -->
+<!--  the contents   -->
+<table summary=""  border="0" width="615" cellspacing="0" cellpadding="0">
+<tr valign="TOP">
+    <!--  left column   -->
+    <td
+width="135" valign="top" bgcolor="#336699"> <span class="GUTTER1"></span> <img src="http://www.ncbi.nlm.nih.gov/corehtml/spacer10.GIF"
+width="135" height="1" border="0" alt="Spacer gif"><!-- #BeginLibraryItem "/Library/dbSNP_sidebar.lbi" -->
+<link href="CSS/snp.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+<!--
+.roundcont {
+	background-color: #f90;
+	color: #fff;
+	width: 120px;
+}
+
+.roundcont p {
+	margin: 0 10px;
+}
+
+.roundtop { 
+	background: url(./css_images/tr.gif) no-repeat right top; 
+}
+
+.roundbottom {
+	background: url(./css_images/br.gif) no-repeat top right; 
+}
+img.corner {
+   width: 15px;
+   height: 15px;
+   border: none;
+   display: block;
+}
+-->
+</style>
+
+<table width="100%">
+  <tr> 
+    <td> 
+	<div align="center"></div>
+    <div  align="center"><!-- #BeginLibraryItem "/Library/FAQ search box.lbi" -->
+	
+<div class="roundcont">
+   <div class="faqtitle">Have a question about dbSNP? Try searching the SNP FAQ Archive!</div>
+<form name="frmGo" method="get" action="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi" onSubmit="searchFAQ(this);">
+ <input name="db" value="Books" type="hidden">
+ <input name="cmd" value="Search" type="hidden">
+ <input name="term" value="" alt="FAQ search Term" size="12">
+ <input type="submit" name="Submit" value="Go">
+ <input name="doptcmdl" value="TOCView" type="hidden">
+</form>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+function searchFAQ (frm) {
+	frm.term.value += ' AND helpsnpfaq[book]';
+}
+-->
+</script>
+</div>	<!-- #EndLibraryItem --></div><div class="sidebarDiv" id="sideBar">
+  <p>
+		<div class="sidebarHeading" id="divGeneral" onClick="toggleSideBar(this);" onKeyPress="toggleSideBar(this);">GENERAL</div>
+		<div class="sidebarSubHeadingDiv" id="divGeneralContent">
+          <a accesskey="R" href="http://www.ncbi.nlm.nih.gov/feed/rss.cgi?ChanKey=dbsnpnews">RSS Feed</a><a href="http://www.ncbi.nlm.nih.gov/feed/rss.cgi?ChanKey=dbsnpnews"><img src="Images/rss.gif" alt="RSS" border="0"></a><br>
+		  <a accesskey="A" href="javascript:Help();" >Contact Us</a><br>
+			<a accesskey="C" href="index.html">dbSNP Homepage</a><br>
+			<a accesskey="D" href="http://www.ncbi.nlm.nih.gov/mailman/listinfo/dbsnp-announce">Announcements</a><BR>
+			<a accesskey="E" href="snp_summary.cgi">dbSNP Summary</a><BR>
+			<a accesskey="F" href="ftp://ftp.ncbi.nih.gov/snp/">FTP Download</a>
+            
+	    </div>
+        <div class="sidebarHeading" id="divHumanVariations" onClick="toggleSideBar(this);" onKeyPress="toggleSideBar(this);">HUMAN VARIATION</div>
+	  <div class="sidebarSubHeadingDiv" id="divHumanVariationsContent">
+		    <a  accesskey="G" href="tranSNP/tranSNP.cgi" title="Search for variation in the human genome using HGVS nomenclature with an opportunity to submit new or annotate existing information ">Search, Annotate, Submit</a><span class="sidebarHeading"></span><br>
+			<a accesskey="H" href="tranSNP/VarBatchSub.cgi" title="Submit multiple variants using HGVS nomenclature with an opportunity to identify their clinical relevance">Annotate and Submit Batch Data with Clinical Impact</a><span class="sidebarHeading"></span><br>
+            <a accesskey="R" href="docs/rs_attributes.html" title="New RS Attributes for filtering variations">Attributes for Filtering Variation</a><span class="sidebarHeading"></span><br>
+
+        </div> 
+		<div class="sidebarHeading" id="divSubmission" onClick="toggleSideBar(this);" onKeyPress="toggleSideBar(this);">SNP SUBMISSION</div>
+		<div class="sidebarSubHeadingDiv" id="divSubmissionContent">
+   	    <!-- <a accesskey="I" href="/books/NBK21088/">Quick Start</a><br> -->
+			<a accesskey="J" href="how_to_submit.html">How to Submit</a><br>
+            <a accesskey="V" href="docs/dbSNP_VCF_Submission.pdf">VCF Submission</a><img src="new.gif" width="25" height="12" alt="NEW gif"><br>
+			<a accesskey="K" href="handle.html">Handle Request</a><br>
+		</div>
+		<div class="sidebarHeading" id="divDocumentation" onClick="toggleSideBar(this);" onKeyPress="toggleSideBar(this);">DOCUMENTATION</div>
+		<div class="sidebarSubHeadingDiv" id="divDocumentationContent">
+          <a accesskey="S" href="ftp://ftp.ncbi.nih.gov/pub/factsheets/Factsheet_SNP.pdf">dbSNP Fact Sheet</a><img src="new.gif" width="25" height="12" alt="NEW gif"><BR>
+		  <a accesskey="L" href="/mailman/mmsearch/dbsnp-announce?restrict=;exclude=;config=dbsnp-announce;method=or;format=short;sort=time;words=build;page=1">Build Release Note</a><br>
+			<a accesskey="M" href="buildhistory.cgi">Build History</a><br>
+		  <a accesskey="N" href="/books/NBK3848/" title="Search SNP archived FAQ updated to 2006">Search FAQ Archive</a><br>
+		  <a accesskey="O" href="/books/NBK174586/">dbSNP Handbook</a><br>
+		  <a accesskey="P" href="get_html.cgi?whichHtml=overview">Overview</a><br>
+			<a accesskey="S" href="ftp://ftp.ncbi.nih.gov/snp/database/b124/mssql/schema/erd_dbSNP.pdf">Database Schema</a><br>
+			<a accesskey="T" href="snp_db_list_table.cgi">Database Dictionary</a><br>
+			<a acceskey="U" href="snp_schemaChange.htm">Database Changes</a><br>
+	    <a acceskey="V" href="geno/genoex_doc.html">Genotype Schema</a><br>
+			<a acceskey="W" href="ftp://ftp.ncbi.nih.gov/snp/00readme.txt">Data Formats</a><BR>
+		  <a acceskey="X" href="docsum/docsum_doc.html">Docsum Schema</a><BR>
+			<a acceskey="Y" href="Hetfreq.html">Heterozygosity Computation</a>
+		</div>
+		<div class="sidebarHeading" id="divSearch" onClick="toggleSideBar(this);" onKeyPress="toggleSideBar(this);">SEARCH</div>
+		<div class="sidebarSubHeadingDiv" id="divSearchContent">
+		  <p><a acceskey="Z" href="/entrez/query.fcgi?db=Snp">Entrez SNP</a><br>
+		    <a acceskey="1" href="SNPeutils.htm">EUtils API</a><br>
+		    <a accesskey="2" href="SNPBlast.html">Blast SNP</a><br>
+		    <a accesskey="3" href="batchquery.html">Batch Query</a><BR>
+		    <a accesskey="6" href="snp_tableList.cgi?type=submitter">By Submitter</a><BR>
+		    <a accesskey="7" href="snp_batchSearch.cgi?init=y">New Batches</a><BR>
+		    <a accesskey="8" href="snp_tableList.cgi?type=method">Method</a><br>
+		    <a accesskey="9" href="snp_tableList.cgi?type=pop">Population Detail</a><br>
+		    <!-- <a accesskey="Q" href="../popclass.cgi">Population Class</a><br> -->
+		    <a accesskey="]" href="snp_tableList.cgi?type=pub">Publication</a><br>
+	      </p>
+		</div>
+        <!--
+		<div class="sidebarHeading" id="divHaplotype" onClick="toggleSideBar(this);" onKeyPress="toggleSideBar(this);">HAPLOTYPE</div>
+		<div class="sidebarSubHeadingDiv" id="divHaplotypeContent">
+			 <a  href="../hap/dbSNP_haplotype_intro.html">Submission</a>
+		</div>
+        -->
+		<div class="sidebarHeading" id="divRelatedSites" onClick="toggleSideBar(this);" onKeyPress="toggleSideBar(this);">RELATED SITES</div>
+		<div class="sidebarSubHeadingDiv" id="divRelatedSitesContent">
+		  <a  accesskey="=" href="/variation/">NCBI Variation resources</a><br>
+		</div>
+		
+		
+        </div>  
+</td>
+  </tr>
+</table>
+<script language="JavaScript" type="text/JavaScript">
+	toggleSideBar($('divHumanVariations'));
+	//toggleSideBar($('divGeneral'));
+</script>
+<noscript>See Human Variations Search</noscript><!-- #EndLibraryItem --><SPAN class="GUTTER1"><BR>
+    </SPAN> </td>
+<!-- extra column to force things over the gif border -->
+    <td width="5"> <img src="http://www.ncbi.nlm.nih.gov/corehtml/spacer10.GIF"
+width="3" height="1" border="0" alt="Spacer gif"> </td>
+    <!-- right content column  -->
+    <!-- #BeginEditable "SNP_right column" --> 
+<td> 
+	  
+<table
+border="0" width="460" cellspacing="2" cellpadding="0" bgcolor="#FFFFFF">
+         
+</table>
+<div align="center"> 
+        
+  <table width="100%" border="0" cellpadding="1">
+  <tr bgcolor="#336699">
+  <td colspan="6" bgcolor="#CCCCFF">
+
+
+<td style="text-align:left;background-color:#CCCCFF;weight:bold"><b>Reference SNP (refSNP) Cluster Report: rs9606708&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><span style="color:red"><b></b></span></td>
+</tr></table>
+<TABLE>
+<TR><TD><!--end of printTemplateTop-->
+<TABLE  border="0"><TR  valign="top"><td ><TABLE  id="RefSNP" cellpadding="2" width="350" ><TH  class="text10" bgcolor="#ccccff" align="center" colspan="2">RefSNP</TH><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>Organism:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">human (<a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=9606"><em>Homo sapiens</em></a>)</td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>Molecule Type:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">Genomic</td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>Created/Updated in build:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">119/141</td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>Map to Genome Build:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1"><a href="http://www.ncbi.nlm.nih.gov/mapview/map_search.cgi?taxid=9606">106</a>/<a title="dbSNP Mapping Weight (1=unique position)" href="http://www.ncbi.nlm.nih.gov/books/NBK44455/#Build.Mapping_Weight">Weight </a></td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong><a href="/projects/SNP/snp_legend.cgi?legend=validation">Validation Status:</a></strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1"><IMG  border="0" height="17" src="gif/val_cluster.gif" alt="byCluster" width="15"><IMG  border="0" height="17" src="gif/val_freq.gif" alt="byFreq" width="15"><IMG  border="0" height="17" src="gif/val_2hit.gif" alt="with2hit" width="15"><IMG  border="0" height="17" src="gif/val_hapmap.gif" alt="withHapMapFreq" width="15"><IMG  border="0" height="17" src="gif/val_1000G.gif" alt="With1000GenomeData" width="15"></td></TR></TABLE></td><td ><TABLE  id="Allele" cellpadding="2" width="350" ><TH  class="text10" bgcolor="#ccccff" align="center" colspan="2">Allele</TH><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong><a href="javascript:openPopup(&quot;snp_legend.cgi?legend=snpClass&quot;);">Variation Class:</a></strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">SNV:<BR> single nucleotide variation</td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>RefSNP Alleles:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">G/T (<span title="rs9606708 alleles are reported in forward orientation to genome">FWD</span>)</td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>Allele Origin:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1"> </td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>Ancestral Allele:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">G</td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>Clinical Channel:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">unknown</td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>Clinical Significance:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">NA</td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong><a href="http://www.ncbi.nlm.nih.gov/projects/SNP/docs/rs_attributes.html#gmaf">MAF/MinorAlleleCount:</a></strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1"><span title="reported on genome orientation">T=0.292/637</span></td></TR><TR ><td  class="text10" bgcolor="#f1f1f1" align="right"><strong>MAF Source:</strong></td><td  class="text10" style="text-align:left;background-color:#f1f1f1">1000 Genomes</td></TR></TABLE></td><td ><TABLE  id="HGVS Names" cellpadding="2" width="200" ><TH  class="text10" bgcolor="#ccccff" align="center" colspan="1">HGVS Names</TH><TR ><td><div class="jig-ncbiexpander" style="width:300px;height:200px;" data-jigconfig="auto:false,minHeight:'160px'"><ul class="dd_list"><li style="background-color:#f1f1f1">NC_000022.11:g.30250137G>T</li><li style="background-color:#f1f1f1">NG_008721.1:g.1671C>A</li><li style="background-color:#f1f1f1">NT_011520.13:g.11540573G>T</li><li style="background-color:#f1f1f1">XM_006724240.1:c.-102-3340C>A</li></ul></div></td></TR></TABLE></td><td ><TABLE ><TR ><td ><SPAN><script language="JavaScript1.2">
+<!--
+var PopUpMenu2_LocalConfig_jsmenu3Config = [
+   ["ShowCloseIcon","yes"],
+ 
+["Help","window.open('/entrez/query/static/popup.html','Links_Help','resizable=no,scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no,alwaysRaised=no,depend=no,width=400,height=500');"],
+   ["TitleText"," Links "]
+]
+var jsmenu3Config = [
+   ["UseLocalConfig","jsmenu3Config","",""]
+]
+//-->
+</script>
+<script language="JavaScript1.2">
+<!--
+var Menu17875217 = [
+   ["UseLocalConfig","jsmenu3Config","",""],
+ ["EntrezSNP","window.top.location='http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=snp&cmd=search&term=rs9606708'","",""],
+["Probe","window.top.location='http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?db=snp&cmd=Display&dopt=snp_probe&from_uid=9606708'","",""],
+["Ensembl","window.top.location='http://www.ensembl.org/Homo_sapiens/snpview?snp=rs9606708&source=dbSNP'","",""],
+["UC Santa Cruz","window.top.location='http://genome.ucsc.edu/cgi-bin/hgTracks?position=rs9606708'","",""],
+
+]
+
+//-->
+</script>
+<a class="dblinks" href="javascript:PopUpMenu2_Set(Menu17875217);"
+onMouseOut="PopUpMenu2_Hide();" TARGET="_self">Links</a>
+</SPAN>
+
+</td><td ><a class="dblinks" href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?itool=gene_full_report&cmd=Retrieve&db=snp&list_uids=9606708&dopt=ExternalLink">, Linkout</a> </td></TR></TABLE></td></TR></TABLE><div style="text-align:left">SNP Details are organized in the following sections:</div>
+<TABLE  cellspacing ="1" >
+<TR  bgcolor="#CCCCFF"  align="center">
+
+<td style="color:white" width="80"><a href="#locus">GeneView</a></td>
+<td style="color:white" width="80"><a href="#map">Map</a></td>
+<td style="color:white" width="80" ><a href="#submission" name="maintab">Submission</a></td>
+<td style="color:white" width="80"><a href="#fasta">Fasta</a></td>
+<td style="color:white" width="80"><a href="#resource">Resource</a></td>
+<td style="color:white" width="80"><a href="#Diversity">Diversity</a></td>
+<td style="color:white" width="80"><a href="#validation">Validation</a></td>
+</TR></TABLE>
+<BR><TABLE  WIDTH="75%" CELLPADDING="0" CELLSPACING="2" BORDER="0" BGCOLOR="#FFFFFF" ><TR ><td  WIDTH="1%" BGCOLOR="#315399">&nbsp</td>
+<td  class="H4" style="text-align:left;background-color:#CCCCFF;width;91%"><a name="map"><strong>Integrated Maps (Hint: click on 'Chr Pos' or 'Contig Pos' column value to see variation in NCBI sequence viewer)</strong></a></td>
+<td  BGCOLOR="#CCCCFF" width="4%"><a href="#maintab"><IMG  width="14" alt="back to top" src="gif/arrowup.gif" height="14" border="0"></a></td>
+</TR></TABLE>    <div id="imaps-idle" class="ajax-idle"></div>
+    <div id="imaps-result" class="indent jig-ncbigrid" style="width: 1000px; display: none">
+      <div class="ui-ncbigrid-inner-div">
+        <!--table class="annot-table" style="font-size: 11px; margin-left: 0px; margin-right:0px"-->
+        <table style="text-align: center; margin-left: 0px; margin-right:0px" data-jigconfig="isSortable: true, columnTypes: ['num', 'str', 'num', 'str', 'num', 'none', 'none', 'none', 'fnc:assemblySort', 'none', 'none']">
+        <!--caption style="text-align: center">Integrated Maps</caption-->
+            <thead>
+                <tr class="wrap-header">
+                    <th title="Assembly" style="width:15px">Assembly</th>
+                    <th title="Genome Build ID" style="width:70px">Genome<br>Build</th>
+                    <th title="Chromosome ID" style="width:50px">Chr</th>
+                    <th title="Chromosome Position" style="width:100px">Chr Pos</th>
+                    <th title="Contig Accession" style="width:60">Contig</th>
+                    <th title="Contig Position" style="width:70">Contig Pos</th>
+                    <th title="SNP to Contig Orientation" style="width:10px">SNP to<br/>Chr</th>
+                    <th title="Contig Allele" style="width:10px">Contig<br/>allele</th>
+                    <th title="Contig to Chromosome Orientation" style="width:10px">Contig to<br/>Chr</th>
+                    <!--th title="Assembly Type" style="width:70px">Group<br>term</th>
+                    <th title="Group Label" style="width:10px">Group<br>label</th>
+                    <th title="Contig Label" style="width:10px">Contig<br>label</th-->
+                    <th title="Neighbor SNP" style="width:10px">Neighbor<br/>SNP</th>
+                    <th title="SNP Map Method" style="width:10px">Map Method</th>
+                </tr>
+            </thead>
+            <tfoot>
+            </tfoot>
+            <tbody>
+            </tbody>
+        </table>
+      </div>
+      <div id="imaps-sv"></div>
+    </div>
+    <div id="imaps-no-result" class="indent" style="display: none">
+        <span tmpl="rs"></span> doesn't map to any assembly.
+    </div>
+<BR><TABLE  WIDTH="75%" CELLPADDING="0" CELLSPACING="2" BORDER="0" BGCOLOR="#FFFFFF" ><TR ><td  WIDTH="1%" BGCOLOR="#315399">&nbsp</td>
+<td  class="H4" style="text-align:left;background-color:#CCCCFF;width;91%"><a name="locus"><strong>GeneView </strong></a></td>
+<td  BGCOLOR="#CCCCFF" width="4%"><a href="#maintab"><IMG  width="14" alt="back to top" src="gif/arrowup.gif" height="14" border="0"></a></td>
+</TR></TABLE>    <div id="gv-idle" class="ajax-idle"></div>
+    <div id="gv-result" style="display: none">
+        <div id="ext-rsg" class="indent" style="display: none">
+            <div class="jig-ncbigrid" style="width: 1000px">
+            <div class="ui-ncbigrid-inner-div">
+            <!--table id="gv-table-ng" class="annot-table"-->
+            <table id="ext-table-rsg">
+            <caption>RefSeqGene Mapping</caption>
+            <thead>
+            <tr>
+            <th>RefSeqGene</th>
+            <th>Gene (ID)</th>
+            <th>SNP to RefSeqGene</th>
+            <th>Position</th>
+            <th>Allele</th>
+            </tr>
+            </thead>
+            <tfoot>
+            </tfoot>
+            <tbody>
+            </tbody>
+            </table>
+            </div>
+            </div>
+        </div>
+        <div id="gv-gene-container" style="display: none">
+        <!-- Repeat the folowing section for each gene -->
+        <!--BEGIN gene section -->
+            <div id="gv-gene" >
+                <!--h4><span tmpl="rs"></span>  is annotated on the gene <span tmpl="gene"></span></h4-->
+                <h4 style="text-align:left">GeneView via analysis of contig annotation: <span tmpl="gene"></span> &nbsp;<span class="note" tmpl="geneDescription"></span></h4>
+                <!-- gene model form. hide by default -->
+                <div style="text-align:left" id="gv-opt" class="expand indent">View more variation on this gene (click to  hide).</div>
+                <div style="text-align:left" id="gv-form" class="indent indent">
+                    <!--b>View variations for gene:</b-->
+                    <form method="get" action="/projects/SNP/snp_ref.cgi" enctype="application/x-www-form-urlencoded">
+                        <input name="showRare" title="Clinically associate snp is one with OMIM ID, or from LSDB or Clinical Diagnostic Assay." type="checkbox" checked="yes" id="show_rare_chk_box">
+                        <label for="show_rare_chk_box"><span name="clin-checkbox-text">Clinical Source:</span></label>
+                        <input type="radio" name="chooseRs" value="all" id="chooseRs_all" />
+                        <label for="chooseRs_all">in gene region</label>
+                        <input type="radio" name="chooseRs" value="coding" checked="checked" id="chooseRs_coding">
+                        <label for="chooseRs_coding">cSNP</label>
+                        <input type="radio" name="chooseRs" value="het" id="chooseRs_het" />
+                        <label for="chooseRs_het">has frequency</label>
+                        <input type="radio" name="chooseRs" value="doublehit" id="chooseRs_doublehit" />
+                        <label for="chooseRs_doublehit">double hit</label>
+                        <input name="go" value="Go" type="submit">
+                        <input name="locusId" value="" type="hidden">
+                    </form>
+                </div>
+
+                <div class="indent">
+                    <!--h4>Functional annotation</h4-->
+                    <div id="gv-detail" style="margin-top: 1em; margin-bottom: 1em">
+                        <div class="jig-ncbigrid" style="width: 1000px">
+                            <div class="ui-ncbigrid-inner-div">
+                            <!--table id="gv-table-g" class="annot-table" style="font-size: 12px"-->
+                                <table id="gv-table-g">
+                                <caption>Primary Assembly Mapping</caption>
+                                <thead>
+                                    <tr>
+                                        <th>Assembly</th>
+                                        <th>SNP to Chr</th>
+                                        <th>Chr</th>
+                                        <th>Chr position</th>
+                                        <th>Contig</th>
+                                        <th>Contig position</th>
+                                        <th>Allele</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                </tfoot>
+                                <tbody>
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <p/>
+
+                        <!-- place holder for NG table -->
+                        <div class="jig-ncbigrid" style="margin-top: 1em; margin-bottom: 1em; width: 1000px;">
+                        <div class="ui-ncbigrid-inner-div">
+                        <!--table id="gv-table-ng" class="annot-table"-->
+                        <table id="gv-table-rsg">
+                        <caption>RefSeqGene Mapping</caption>
+                        <thead>
+                            <tr>
+                                <th>RefSeqGene</th>
+                                <th>Gene (ID)</th>
+                                <th>SNP to RefSeqGene</th>
+                                <th>Position</th>
+                                <th>Allele</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        </tfoot>
+                        <tbody>
+                        </tbody>
+                        </table>
+                        </div>
+                        </div>
+
+                        <p/>
+                        
+                        <div class="jig-ncbigrid" style="width: 1000px">
+                            <div class="ui-ncbigrid-inner-div">
+                            <!--table id="gv-table" class="annot-table func-table" style="font-size: 12px"-->
+                                <table id="gv-table">
+                                <caption>Gene Model(s)<caption>
+                                <thead>
+                                    <tr>
+                                        <th rowSpan="2" class="func">Function</th>
+                                        <th colSpan="4" class="mrnaT">mRNA</th>
+                                        <th colSpan="3" class="proteinT">Protein</th>
+                                    </tr>
+                                    <tr>
+                                        <th title="mRNA to contig orientation" class="mrna">SNP to mRNA</th>
+                                        <th class="mrna">Accession</th>
+                                        <th class="mrna">Position</th>
+                                        <th nowrap="nowrap" class="mrna">Allele change</th>
+                                        <th class="protein">Accession</th>
+                                        <th class="protein">Position</th>
+                                        <th nowrap="nowrap" class="protein">Residue change</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                </tfoot>
+                                <tbody>
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="font-weight:bold;margin-top:1em; display: none"><span tmpl="gene"></span> on <span tmpl="assembly"></span> assembly: <span tmpl="rs"></span> is labeled at position <span tmpl="chrPosFrom"></span> on chromosome <span tmpl="chr"></span>.</div>
+                <div id="gv-geneview-image" class="indent"></div>
+            </div>
+        <!--END gene section -->
+
+        </div> <!-- gv-gene-container -->
+    </div>
+    <!--div id="gv-no-result" class="indent"><h4><span tmpl="rs"></span> is not annotated on any gene</h4></div-->
+    <div id="gv-no-result" class="indent NA" style="display: none"><h4>GeneView via analysis of contig annotation:  N/A.</div>
+    <div id="blast-result" style="display: none">
+        <div id="blast-gene-container">
+        <!-- Repeat the folowing section for each mRNA hit -->
+        <!--BEGIN blast section -->
+            <div id="blast-gene" class="indent">
+                <h4>GeneView via direct blast against RefSeq sequences (used when no gene model is available): <span tmpl="gene"></span> <span class="note" tmpl="geneDescription"></span></h4>
+                <!--div class="note">(Direct blast is used when the SNP doesn't align with mRNA and/or the mRNA doesn't align with contig.)</div-->
+                <div id="blast-detail">
+                    <!--table id="blast-table-g" class="annot-table">
+                    <thead>
+                        <tr>
+                            <th>Assembly</th>
+                            <th>Chromosome</th>
+                            <th>Chromosome position</th>
+                            <th>Contig</th>
+                            <th>Contig position</th>
+                            <th>Allele</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody>
+                    </tbody>
+                    </table-->
+                    
+                        <div class="jig-ncbigrid" config="width: 800">
+                        <div class="ui-ncbigrid-inner-div">
+                        <table id="blast-table" style="font-size: 12px">
+                        <thead>
+                            <tr>
+                                <th rowSpan="2" class="func">Function</th>
+                                <!--th rowSpan="2" class="func">Chr</th-->
+                                <th colSpan="4" class="mrnaT">mRNA</th>
+                                <th colSpan="3" class="proteinT">Protein</th>
+                            </tr>
+                            <tr>
+                                <th title="SNP to mRNA orientation" class="mrna">SNP to mRNA</th>
+                                <th class="mrna">Accession</th>
+                                <th class="mrna">Position</th>
+                                <th nowrap="nowrap" class="mrna">Allele change</th>
+                                <th class="protein">Accession</th>
+                                <th class="protein">Position</th>
+                                <th nowrap="nowrap" class="protein">Residue change</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                        </tfoot>
+                        <tbody>
+                        </tbody>
+                        </table>
+                        </div>
+                        </div>
+                </div>
+                <div style="font-weight:bold;margin-top:1em; display: none"><span tmpl="gene"></span> on <span tmpl="assembly"></span> assembly: <span tmpl="rs"></span> is labeled at position <span tmpl="chrPosFrom"></span> on chromosome <span tmpl="chr"></span>.</div>
+                <div id="blast-geneview-image"></div>
+
+            </div>
+        <!--END blast section -->
+
+        </div>
+    </div>
+    <!--div id="blast-no-result" class="indent"><span tmpl="rs"></span> no link established by BLAST analysis on RefSeq mRNA sequences.</div-->
+    <div style="text-align:left" id="blast-no-result" class="indent NA" style="display: none"><h4>GeneView via direct blast against RefSeq sequences (used when no gene model is available): N/A</h4>
+        <!--div class="note">(Direct blast is used when the SNP doesn't align with mRNA and/or the mRNA doesn't align with contig.)</div-->
+    </div>
+<BR><TABLE  WIDTH="75%" CELLPADDING="0" CELLSPACING="2" BORDER="0" BGCOLOR="#FFFFFF" ><TR ><td  WIDTH="1%" BGCOLOR="#315399">&nbsp</td>
+<td  class="H4" style="text-align:left;background-color:#CCCCFF;width;91%"><a name="submission"><strong>Submitter records for this RefSNP Cluster</strong></a></td>
+<td  BGCOLOR="#CCCCFF" width="4%"><a href="#maintab"><IMG  width="14" alt="back to top" src="gif/arrowup.gif" height="14" border="0"></a></td>
+</TR></TABLE><div style="text-align:left">The submission <strong>ss283619008</strong> has the longest flanking sequence of all cluster members and was used to instantiate sequence for <strong>rs9606708</strong> during BLAST analysis for the current build.</div><BR><BR><TABLE  id="Submission"><TR ><TH  bgcolor="silver">NCBI<br>Assay ID</TH><TH  bgcolor="silver">Handle|Submitter ID</TH><TH  bgcolor="silver"><a href="javascript:openPopup(&quot;snp_legend.cgi?legend=validation&quot;)">Validation<br>Status</a></TH><TH  bgcolor="silver"><a href="ftp://ftp.ncbi.nih.gov/snp/database/Illumina_top_bot_strand.note.txt">ss to rs<BR>Orientation<BR>/Strand</a></TH><TH  bgcolor="silver">Alleles</TH><TH  bgcolor="silver">5' Near Seq 30 bp</TH><TH  bgcolor="silver">3' Near Seq 30 bp</TH><TH  bgcolor="silver">Entry<BR>Date</TH><TH  bgcolor="silver">Update<BR>Date</TH><TH  bgcolor="silver">Build<BR>Added</TH><TH  bgcolor="silver">Molecule<BR>Type</TH><TH  bgcolor="silver">Freq<BR>Warning</TH><TH  bgcolor="silver">Ancestral<BR>Allele</TH><TH  bgcolor="silver">Success<BR>Rate</TH></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=13348127">ss13348127</a></td><td >SC_SNP|NT_011520.9_10036695</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >10/22/03</td><td >10/31/03</td><td >119</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=16928500">ss16928500</a></td><td >CSHL-HAPMAP|CSHL-HuAA-200402.chr22.NT_011520.9_10036695</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >02/17/04</td><td >03/04/04</td><td >120</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=21854556">ss21854556</a></td><td >SSAHASNP|WGSA-200403-chr22.chr22.NT_011520.9_10036695</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >03/20/04</td><td >03/20/04</td><td >121</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=41545403">ss41545403</a></td><td >ABI|hCV2624328</td><td ><IMG  border="0" height="17" src="gif/val_freq.gif" alt="byFreq" width="15"></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >07/17/05</td><td >11/03/06</td><td >126</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=66568309">ss66568309</a></td><td >ILLUMINA|HumanHap300v1.1_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >11/09/06</td><td >11/09/06</td><td >127</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=67935959">ss67935959</a></td><td >ILLUMINA|HumanHap550v1.1_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >11/14/06</td><td >11/15/06</td><td >127</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=68053991">ss68053991</a></td><td >ILLUMINA|HumanHap650Yv1.0_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >11/14/06</td><td >11/15/06</td><td >127</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=69274569">ss69274569</a></td><td >PERLEGEN|PGP06257470</td><td ><IMG  border="0" height="17" src="gif/val_freq.gif" alt="byFreq" width="15"></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >01/30/07</td><td >03/31/08</td><td >127</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=71618716">ss71618716</a></td><td >ILLUMINA|HumanHap650Yv3.0_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >04/23/07</td><td >04/23/07</td><td >127</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=75547400">ss75547400</a></td><td >ILLUMINA|ILMN_Human_1M_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >08/28/07</td><td >08/29/07</td><td >129</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=79301290">ss79301290</a></td><td >ILLUMINA|HumanHap300v2.0_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >04/18/07</td><td >11/18/07</td><td >130</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=84843335">ss84843335</a></td><td >KRIBB_YJKIM|KHS826968</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >12/04/07</td><td >12/08/07</td><td >130</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=91903157">ss91903157</a></td><td >BCMHGSC_JDW|JWB-1520110</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >02/26/08</td><td >03/02/08</td><td >129</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=96097413">ss96097413</a></td><td ><a href="http://huref.jcvi.org/browse.html?search=1103691027931">HUMANGENOME_JCVI|1103691027931</a></td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >03/25/08</td><td >03/25/08</td><td >130</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=98277626">ss98277626</a></td><td >ILLUMINA|HumanHap550v3.0__rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >04/20/07</td><td >03/31/08</td><td >130</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=106223689">ss106223689</a></td><td >BGI|BGI_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >09/13/08</td><td >06/18/09</td><td >130</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=112606151">ss112606151</a></td><td >1000GENOMES|CEU.trio.12.15.2008_3798970_chr22_28976126</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >12/17/08</td><td >12/17/08</td><td >130</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=123021296">ss123021296</a></td><td >ILLUMINA|HumanCNV370v1_C_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >04/14/09</td><td >04/15/09</td><td >131</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=138346539">ss138346539</a></td><td >ENSEMBL|ENSSNP11918354</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >05/15/09</td><td >05/17/09</td><td >131</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=143491661">ss143491661</a></td><td >ENSEMBL|ENSSNP8495803</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >12/08/08</td><td >10/19/09</td><td >131</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=154503753">ss154503753</a></td><td >ILLUMINA|Human610_Quadv1_B_rs9606708-128_B_F_1501894466</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >06/18/09</td><td >06/20/09</td><td >131</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=157122119">ss157122119</a></td><td >GMI|GMI_SNP_24526442</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >06/24/09</td><td >06/25/09</td><td >131</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=159677621">ss159677621</a></td><td >ILLUMINA|Human660W-Quad_v1_A_rs9606708-128_B_F_1501894466</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >07/06/09</td><td >07/07/09</td><td >131</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=161003304">ss161003304</a></td><td >ILLUMINA|HumanOmni1-Quad_v1-0_B_rs9606708-128_B_F_1501894466</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >08/04/09</td><td >10/05/09</td><td >131</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=172486366">ss172486366</a></td><td >ILLUMINA|HumanCNV370-Quadv3_C_rs9606708-128_B_F_1501894466</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >10/01/09</td><td >10/04/09</td><td >132</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=174876723">ss174876723</a></td><td >ILLUMINA|Human1M-Duov3_B_rs9606708-128_B_F_1501894466</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >10/01/09</td><td >10/05/09</td><td >132</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=208844766">ss208844766</a></td><td >BCM-HGSC-SUB|BCM_CMT_1011-3300201</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >03/15/10</td><td >03/20/10</td><td >132</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=238051055">ss238051055</a></td><td >1000GENOMES|pilot_1_CEU_7655684_chr22_28976126</td><td ></td><td >fwd/</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >05/01/10</td><td >05/01/10</td><td >132</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=244174526">ss244174526</a></td><td >1000GENOMES|pilot_1_CHB+JPT_6059603_chr22_28976126</td><td ></td><td >fwd/</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >05/01/10</td><td >05/01/10</td><td >132</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><strong><a href="snp_ss.cgi?subsnp_id=283619008">ss283619008</a></strong></td><td >GMI|GMI_AK_SNP_7939429</td><td ></td><td >fwd/</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >12/16/10</td><td >12/16/10</td><td >137</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=292751589">ss292751589</a></td><td >PJP|SNP_2257947_chr22_28976126</td><td ></td><td >fwd/</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >01/21/11</td><td >01/21/11</td><td >134</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=410959265">ss410959265</a></td><td >ILLUMINA|Cardio-Metabo_Chip_11395247_A_rs9606708</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >06/07/11</td><td >06/08/11</td><td >135</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=481949360">ss481949360</a></td><td >ILLUMINA|HumanOmni2.5-4v1_B_rs9606708-128_B_F_1617221482</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >01/30/12</td><td >02/01/12</td><td >137</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=481982920">ss481982920</a></td><td >ILLUMINA|HumanOmniExpress-12v1_C_rs9606708-131_B_F_1857685230</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >01/30/12</td><td >02/01/12</td><td >137</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=482938092">ss482938092</a></td><td >ILLUMINA|HumanOmni1-Quad_v1-0_C_rs9606708-131_B_F_1865217451</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >01/30/12</td><td >02/02/12</td><td >137</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=485768355">ss485768355</a></td><td >ILLUMINA|HumanOmni2.5-4v1_D_rs9606708-131_B_F_1857685230</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >01/30/12</td><td >02/05/12</td><td >137</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=537617001">ss537617001</a></td><td >ILLUMINA|HumanOmni5-4v1_B__rs9606708-131_B_F_1885686767</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">aatggactctggcctcattcacaaccaggt</span></td><td >06/22/12</td><td >07/04/12</td><td >138</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR><TR  style="text-align:left"><td ><a href="snp_ss.cgi?subsnp_id=662540137">ss662540137</a></td><td >SSMP|22_30646126</td><td ></td><td >fwd/B</td><td >G/T</td><td ><span  face="courier" size="-2">aaaggagatggagaggcctgaaggtttgaa</span></td><td ><span  face="courier" size="-2">atggactctggcctcattcacaaccaggtt</span></td><td >12/14/12</td><td >12/17/12</td><td >138</td><td >Genomic</td><td ></td><td ></td><td >unknown</td></TR></TABLE><BR><TABLE  WIDTH="75%" CELLPADDING="0" CELLSPACING="2" BORDER="0" BGCOLOR="#FFFFFF" ><TR ><td  WIDTH="1%" BGCOLOR="#315399">&nbsp</td>
+<td  class="H4" style="text-align:left;background-color:#CCCCFF;width;91%"><a name="fasta"><strong>Fasta sequence &nbsp;&nbsp;(<a href="javascript:openPopup(&quot;snp_legend.cgi?legend=fasta&quot;);">Legend</a>)</strong></a></td>
+<td  BGCOLOR="#CCCCFF" width="4%"><a href="#maintab"><IMG  width="14" alt="back to top" src="gif/arrowup.gif" height="14" border="0"></a></td>
+</TR></TABLE><DIV id="Fasta" style="font-family:courier;text-align:left;"><div style="text-align:left">>gnl|dbSNP|rs9606708|allelePos=501|totalLen=1001|taxid=9606|snpclass=1|alleles='G/T'|mol=Genomic|build=138<PRE> CCCCATCCAC AAGTCTCTCC TGGGATATCA CAGCTGCTTA TTTTCCAGAT GGGGAAATTG
+ AGGCTCAGAG AGGTGAAGAT AACTATGTGG GGCTCACATA AAGAGTTAAT AACAGAGCCA
+ GGTCTGGAAC CGGGGCTTCT GTCTTGCAGG CCACAACAAT CCCTGCAGCA CCTCTTGCTC
+ TGAGAGGGCG AAGGGCATGG CAGGAGTGCT CGGGTCGCCT TCCTCCAGGA AGCCTCCCCT
+ GCCTCCCATG GCCCCGACCA GCTCACATCG GCCATGTCCT GCCTGCTCGT GTTTCAAGTG
+ GGGATGAGTC TTATTCCTCA ACCTTTGAGA GTTTGAATGG GGTCTGAGAC TCACTTGTGC
+ TCTAGACAGC ACCTGGCTCA GGGCTATACT CTGACATGAA TAGAGGTTAA GTATTTTTTG
+ AGAAAGCATT TTATAGTTTC CAAAAACTGT CAGTGCCAAC TCTCTTGTGG AAAGGAGATG
+ GAGAGGCCTG AAGGTTTGAA
+ <span  style="color:green;">K</span>
+ AATGGACTCT GGCCTCATTC ACAACCAGGT TGGAGGTTTG GCTCTGCCAG TTATGAGCTG
+ AGTGACTTTG GGGAAGGGAC TACCACCTCC TGGCCTCAGT TTCTTCAACT ATAAAATGGG
+ AATAATGGTA CCGCCTTTGT GGGTCTGCTG TGAGGGCTCA GGGCTCAGCA TGGTTCTGGG
+ CACCCAGCAA GCCACCTGTC TGCATATCAT CACCCATTGT GCTGACCTCC CTGTGAAGCA
+ GGGGTTCATT TGACAGATGG GGAAACTTGG GTCCATGCCA GGGTGCTGAG CGGGGAAGGC
+ TGGGCAGGAG CAAGACCTCT CAAGCCTCTG CTGATGGTAA ATTGAGGCAA GATACCCACG
+ TAGCCTCCAG CTTCAAGGGT GCCCCAGATA AATCAGACAG GTTGTGGGAG GGGGCTGGCA
+ GGGCAGTGTG CTCACTCCCC CAGAGCCCCC TTCCTGGCCC CTCACCACCC CCACCCCAAG
+ CCTGATCTGA GGACAGCAGC
+</PRE>
+</div></DIV><BR><TABLE  WIDTH="75%" CELLPADDING="0" CELLSPACING="2" BORDER="0" BGCOLOR="#FFFFFF" ><TR ><td  WIDTH="1%" BGCOLOR="#315399">&nbsp</td>
+<td  class="H4" style="text-align:left;background-color:#CCCCFF;width;91%"><a name="resource"><strong>NCBI Resource Links</strong></a></td>
+<td  BGCOLOR="#CCCCFF" width="4%"><a href="#maintab"><IMG  width="14" alt="back to top" src="gif/arrowup.gif" height="14" border="0"></a></td>
+</TR></TABLE><TABLE  width="50%" ><TR  valign="top"><td ><TABLE ><TR  style="text-align:left"><TH  bgcolor="silver" colspan="1">Submitter-Referenced</TH></TR><TR  style="text-align:left"><td  bgcolor="#f0f0f0">GenBank</td></TR><TR  style="text-align:left"><td  bgcolor="#dfdfdf"><a href="http://www.ncbi.nlm.nih.gov/nuccore/NT_011520">NT_011520</a>
+<a href="http://www.ncbi.nlm.nih.gov/nuccore/ABBA01055293">ABBA01055293</a>
+</td></TR></TABLE></td><td ><TABLE ><TR ><TH  bgcolor="silver" colspan="0">dbSNP Blast Analysis</TH></TR><TR ></TR><TR ></TR></TABLE></td><td ></td><td ></td><td ></td></TR></TABLE><BR><TABLE  WIDTH="75%" CELLPADDING="0" CELLSPACING="2" BORDER="0" BGCOLOR="#FFFFFF" ><TR ><td  WIDTH="1%" BGCOLOR="#315399">&nbsp</td>
+<td  class="H4" style="text-align:left;background-color:#CCCCFF;width;91%"><a name="Diversity"><strong>Population Diversity (in rs orientation)</strong></a></td>
+<td  BGCOLOR="#CCCCFF" width="4%"><a href="#maintab"><IMG  width="14" alt="back to top" src="gif/arrowup.gif" height="14" border="0"></a></td>
+</TR></TABLE><BR><TABLE  id="Diversity"><TR ><TH  bgcolor="silver"> </TH><TH  bgcolor="silver" colspan="4">Sample Ascertainment</TH><TH  bgcolor="silver" colspan="4">Genotype Detail</TH><TH  bgcolor="silver" colspan="3">Alleles</TH></TR><TR ><TH  bgcolor="silver">ss#</TH><TH  bgcolor="silver">Population</TH><TH  bgcolor="silver">Individual<BR>Group</TH><TH  bgcolor="silver">Chrom.<BR>Sample Cnt.<br></TH><TH  bgcolor="silver">Source</TH><TH  bgcolor="silver">G/G<BR><IMG  border="0" height="6" src="gif/orange.gif" width="20"></TH><TH  bgcolor="silver">G/T<BR><IMG  border="0" height="6" src="gif/green.gif" width="20"></TH><TH  bgcolor="silver">T/T<BR><IMG  border="0" height="6" src="gif/blue.gif" width="20"></TH><TH  bgcolor="silver">HWP</TH><TH  bgcolor="silver">G<BR><IMG  border="0" height="6" src="gif/orange.gif" width="20"></TH><TH  bgcolor="silver">T<BR><IMG  border="0" height="6" src="gif/blue.gif" width="20"></TH></TR><TR  valign="bottom"><td  style="text-align:left"><a href="snp_ss.cgi?ss=ss138346539">ss138346539</a></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12269">ENSEMBL_Watson</a></td><td  style="text-align:left"></td><td  style="text-align:left">     2</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> 1.000</span></td><td > </td><td ><span  size="-1"> </span></td><td ><span  size="-1"> 1.000</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="0"><IMG  border="0" height="6" src="gif/green.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="120"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="80"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"><a href="snp_ss.cgi?ss=ss143491661">ss143491661</a></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12632">ENSEMBL_Venter</a></td><td  style="text-align:left"></td><td  style="text-align:left">     2</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> 1.000</span></td><td > </td><td ><span  size="-1"> </span></td><td ><span  size="-1"> 1.000</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="0"><IMG  border="0" height="6" src="gif/green.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="120"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="80"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"><a href="snp_ss.cgi?ss=ss238051055">ss238051055</a></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=13148">pilot_1_CEU_low_coverage_panel</a></td><td  style="text-align:left"></td><td  style="text-align:left">   120</td><td  style="text-align:left">AF</td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> </span></td><td > </td><td ><span  size="-1"> 0.725</span></td><td ><span  size="-1"> 0.275</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="0"><IMG  border="0" height="6" src="gif/green.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="0"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="58"><IMG  border="0" height="6" src="gif/blue.gif" width="22"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"><a href="snp_ss.cgi?ss=ss244174526">ss244174526</a></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=13149">pilot_1_CHB+JPT_low_coverage_panel</a></td><td  style="text-align:left"></td><td  style="text-align:left">   120</td><td  style="text-align:left">AF</td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> </span></td><td > </td><td ><span  size="-1"> 0.675</span></td><td ><span  size="-1"> 0.325</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="0"><IMG  border="0" height="6" src="gif/green.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="0"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="54"><IMG  border="0" height="6" src="gif/blue.gif" width="26"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"><a href="snp_ss.cgi?ss=ss41545403">ss41545403</a></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=1409">HapMap-CEU</a></td><td  style="text-align:left">European</td><td  style="text-align:left">   222</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.486</span></td><td  style="text-align:left"><span  size="-1"> 0.414</span></td><td  style="text-align:left"><span  size="-1"> 0.099</span></td><td ><span  size="-1"> 1.000</span></td><td ><span  size="-1"> 0.694</span></td><td ><span  size="-1"> 0.306</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="58.32"><IMG  border="0" height="6" src="gif/green.gif" width="49.68"><IMG  border="0" height="6" src="gif/blue.gif" width="11.88"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="55.52"><IMG  border="0" height="6" src="gif/blue.gif" width="24.48"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=1410">HapMap-HCB</a></td><td  style="text-align:left">Asian</td><td  style="text-align:left">    86</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.372</span></td><td  style="text-align:left"><span  size="-1"> 0.395</span></td><td  style="text-align:left"><span  size="-1"> 0.233</span></td><td ><span  size="-1"> 0.251</span></td><td ><span  size="-1"> 0.570</span></td><td ><span  size="-1"> 0.430</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="44.64"><IMG  border="0" height="6" src="gif/green.gif" width="47.4"><IMG  border="0" height="6" src="gif/blue.gif" width="27.96"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="45.6"><IMG  border="0" height="6" src="gif/blue.gif" width="34.4"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=1411">HapMap-JPT</a></td><td  style="text-align:left">Asian</td><td  style="text-align:left">   166</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.398</span></td><td  style="text-align:left"><span  size="-1"> 0.518</span></td><td  style="text-align:left"><span  size="-1"> 0.084</span></td><td ><span  size="-1"> 0.200</span></td><td ><span  size="-1"> 0.657</span></td><td ><span  size="-1"> 0.343</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="47.76"><IMG  border="0" height="6" src="gif/green.gif" width="62.16"><IMG  border="0" height="6" src="gif/blue.gif" width="10.08"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="52.56"><IMG  border="0" height="6" src="gif/blue.gif" width="27.44"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=1412">HapMap-YRI</a></td><td  style="text-align:left">Sub-Saharan African</td><td  style="text-align:left">   224</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.982</span></td><td  style="text-align:left"><span  size="-1"> 0.018</span></td><td  style="text-align:left"><span  size="-1"> </span></td><td ><span  size="-1"> 1.000</span></td><td ><span  size="-1"> 0.991</span></td><td ><span  size="-1"> 0.009</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="117.84"><IMG  border="0" height="6" src="gif/green.gif" width="2.16"><IMG  border="0" height="6" src="gif/blue.gif" width="0"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="79.28"><IMG  border="0" height="6" src="gif/blue.gif" width="0.72"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12156">HAPMAP-ASW</a></td><td  style="text-align:left"></td><td  style="text-align:left">    98</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.735</span></td><td  style="text-align:left"><span  size="-1"> 0.245</span></td><td  style="text-align:left"><span  size="-1"> 0.020</span></td><td ><span  size="-1"> 1.000</span></td><td ><span  size="-1"> 0.857</span></td><td ><span  size="-1"> 0.143</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="88.2"><IMG  border="0" height="6" src="gif/green.gif" width="29.4"><IMG  border="0" height="6" src="gif/blue.gif" width="2.4"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="68.56"><IMG  border="0" height="6" src="gif/blue.gif" width="11.44"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12157">HAPMAP-CHB</a></td><td  style="text-align:left">Asian</td><td  style="text-align:left">    80</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.300</span></td><td  style="text-align:left"><span  size="-1"> 0.550</span></td><td  style="text-align:left"><span  size="-1"> 0.150</span></td><td ><span  size="-1"> 0.439</span></td><td ><span  size="-1"> 0.575</span></td><td ><span  size="-1"> 0.425</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="36"><IMG  border="0" height="6" src="gif/green.gif" width="66"><IMG  border="0" height="6" src="gif/blue.gif" width="18"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="46"><IMG  border="0" height="6" src="gif/blue.gif" width="34"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12158">HAPMAP-CHD</a></td><td  style="text-align:left"></td><td  style="text-align:left">   166</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.494</span></td><td  style="text-align:left"><span  size="-1"> 0.373</span></td><td  style="text-align:left"><span  size="-1"> 0.133</span></td><td ><span  size="-1"> 0.200</span></td><td ><span  size="-1"> 0.681</span></td><td ><span  size="-1"> 0.319</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="59.28"><IMG  border="0" height="6" src="gif/green.gif" width="44.76"><IMG  border="0" height="6" src="gif/blue.gif" width="15.96"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="54.48"><IMG  border="0" height="6" src="gif/blue.gif" width="25.52"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12159">HAPMAP-GIH</a></td><td  style="text-align:left"></td><td  style="text-align:left">   174</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.241</span></td><td  style="text-align:left"><span  size="-1"> 0.471</span></td><td  style="text-align:left"><span  size="-1"> 0.287</span></td><td ><span  size="-1"> 0.655</span></td><td ><span  size="-1"> 0.477</span></td><td ><span  size="-1"> 0.523</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="28.92"><IMG  border="0" height="6" src="gif/green.gif" width="56.52"><IMG  border="0" height="6" src="gif/blue.gif" width="34.44"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="38.16"><IMG  border="0" height="6" src="gif/blue.gif" width="41.84"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12160">HAPMAP-LWK</a></td><td  style="text-align:left"></td><td  style="text-align:left">   178</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.978</span></td><td  style="text-align:left"><span  size="-1"> 0.022</span></td><td  style="text-align:left"><span  size="-1"> </span></td><td ><span  size="-1"> 1.000</span></td><td ><span  size="-1"> 0.989</span></td><td ><span  size="-1"> 0.011</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="117.36"><IMG  border="0" height="6" src="gif/green.gif" width="2.64"><IMG  border="0" height="6" src="gif/blue.gif" width="0"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="79.12"><IMG  border="0" height="6" src="gif/blue.gif" width="0.88"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12161">HAPMAP-MEX</a></td><td  style="text-align:left"></td><td  style="text-align:left">   100</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.200</span></td><td  style="text-align:left"><span  size="-1"> 0.600</span></td><td  style="text-align:left"><span  size="-1"> 0.200</span></td><td ><span  size="-1"> 0.200</span></td><td ><span  size="-1"> 0.500</span></td><td ><span  size="-1"> 0.500</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="24"><IMG  border="0" height="6" src="gif/green.gif" width="72"><IMG  border="0" height="6" src="gif/blue.gif" width="24"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="40"><IMG  border="0" height="6" src="gif/blue.gif" width="40"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12162">HAPMAP-MKK</a></td><td  style="text-align:left"></td><td  style="text-align:left">   286</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.825</span></td><td  style="text-align:left"><span  size="-1"> 0.175</span></td><td  style="text-align:left"><span  size="-1"> </span></td><td ><span  size="-1"> 0.655</span></td><td ><span  size="-1"> 0.913</span></td><td ><span  size="-1"> 0.087</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="99"><IMG  border="0" height="6" src="gif/green.gif" width="21"><IMG  border="0" height="6" src="gif/blue.gif" width="0"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="73.04"><IMG  border="0" height="6" src="gif/blue.gif" width="6.96"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=12163">HAPMAP-TSI</a></td><td  style="text-align:left"></td><td  style="text-align:left">   176</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.330</span></td><td  style="text-align:left"><span  size="-1"> 0.466</span></td><td  style="text-align:left"><span  size="-1"> 0.205</span></td><td ><span  size="-1"> 0.655</span></td><td ><span  size="-1"> 0.562</span></td><td ><span  size="-1"> 0.438</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="39.6"><IMG  border="0" height="6" src="gif/green.gif" width="55.92"><IMG  border="0" height="6" src="gif/blue.gif" width="24.6"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="44.96"><IMG  border="0" height="6" src="gif/blue.gif" width="35.04"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"><a href="snp_ss.cgi?ss=ss69274569">ss69274569</a></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=1409">HapMap-CEU</a></td><td  style="text-align:left">European</td><td  style="text-align:left">   120</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.517</span></td><td  style="text-align:left"><span  size="-1"> 0.400</span></td><td  style="text-align:left"><span  size="-1"> 0.083</span></td><td ><span  size="-1"> 1.000</span></td><td ><span  size="-1"> 0.717</span></td><td ><span  size="-1"> 0.283</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="62.04"><IMG  border="0" height="6" src="gif/green.gif" width="48"><IMG  border="0" height="6" src="gif/blue.gif" width="9.96"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="57.36"><IMG  border="0" height="6" src="gif/blue.gif" width="22.64"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=1410">HapMap-HCB</a></td><td  style="text-align:left">Asian</td><td  style="text-align:left">    90</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.400</span></td><td  style="text-align:left"><span  size="-1"> 0.378</span></td><td  style="text-align:left"><span  size="-1"> 0.222</span></td><td ><span  size="-1"> 0.150</span></td><td ><span  size="-1"> 0.589</span></td><td ><span  size="-1"> 0.411</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="48"><IMG  border="0" height="6" src="gif/green.gif" width="45.36"><IMG  border="0" height="6" src="gif/blue.gif" width="26.64"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="47.12"><IMG  border="0" height="6" src="gif/blue.gif" width="32.88"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=1411">HapMap-JPT</a></td><td  style="text-align:left">Asian</td><td  style="text-align:left">    90</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 0.400</span></td><td  style="text-align:left"><span  size="-1"> 0.511</span></td><td  style="text-align:left"><span  size="-1"> 0.089</span></td><td ><span  size="-1"> 0.403</span></td><td ><span  size="-1"> 0.656</span></td><td ><span  size="-1"> 0.344</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="48"><IMG  border="0" height="6" src="gif/green.gif" width="61.32"><IMG  border="0" height="6" src="gif/blue.gif" width="10.68"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="52.48"><IMG  border="0" height="6" src="gif/blue.gif" width="27.52"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=1412">HapMap-YRI</a></td><td  style="text-align:left">Sub-Saharan African</td><td  style="text-align:left">   120</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> 1.000</span></td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> </span></td><td > </td><td ><span  size="-1"> 1.000</span></td><td ><span  size="-1"> </span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="120"><IMG  border="0" height="6" src="gif/green.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="0"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="80"><IMG  border="0" height="6" src="gif/blue.gif" width="0"></td><td > </td></TR><TR  valign="bottom"><td  style="text-align:left"><a href="snp_ss.cgi?ss=ss96097413">ss96097413</a></td><td  style="text-align:left"><a href="snp_viewTable.cgi?pop=10098">J. Craig Venter</a></td><td  style="text-align:left"></td><td  style="text-align:left">     2</td><td  style="text-align:left">IG</td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> </span></td><td  style="text-align:left"><span  size="-1"> 1.000</span></td><td > </td><td ><span  size="-1"> </span></td><td ><span  size="-1"> 1.000</span></td><td > </td></TR><TR  valign="center"><td ></td><td ></td><td ></td><td ></td><td ></td><td  align="center" colspan="3"><IMG  border="0" height="6" src="gif/orange.gif" width="0"><IMG  border="0" height="6" src="gif/green.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="120"></td><td > </td><td  align="center" colspan="2"><IMG  border="0" height="6" src="gif/orange.gif" width="0"><IMG  border="0" height="6" src="gif/blue.gif" width="80"></td><td > </td></TR></TABLE><BR><TABLE ><TR ><TH  bgcolor="silver">Summary</TH><TH  bgcolor="silver">Average<BR>Het.+/- std err:</TH><TH  bgcolor="silver">Individual<BR>Count</TH><TH  bgcolor="silver">Founders<BR>Count</TH><TH  bgcolor="silver">Individual<BR>Overlap</TH><TH  bgcolor="silver">Genotype<BR>Conflict</TH><TH  bgcolor="silver">Additional Freq. Data</TH></TR><TR ><td ></td><td ><span  size="-1">0.414</span><span  color="gray" size="-3">+/-0.189</span></td><td >1210</td><td >1005</td><td >270</td><td >0</td><td ><a href="http://alfred.med.yale.edu/alfred/recordinfod.asp?UNID=SI645266D">ALFRED: The Allele Frequency Database</a></td></TR></TABLE><BR><TABLE  WIDTH="75%" CELLPADDING="0" CELLSPACING="2" BORDER="0" BGCOLOR="#FFFFFF" ><TR ><td  WIDTH="1%" BGCOLOR="#315399">&nbsp</td>
+<td  class="H4" style="text-align:left;background-color:#CCCCFF;width;91%"><a name="validation"><strong>Validation Summary:</strong></a></td>
+<td  BGCOLOR="#CCCCFF" width="4%"><a href="#maintab"><IMG  width="14" alt="back to top" src="gif/arrowup.gif" height="14" border="0"></a></td>
+</TR></TABLE><TABLE  id="Validation"><TH  bgcolor="silver"><a href="javascript:openPopup(&quot;snp_legend.cgi?legend=validation&quot;)"><strong>Validation status</strong></a></TH><TH  bgcolor="silver">Marker displays<BR> Mendelian segregation</TH><TH  bgcolor="silver">PCR results confirmed<BR> in multiple reactions</TH><TH  bgcolor="silver">Homozygotes detected<BR>in individual genotype data</TH><TR ><td  style="text-align:left"><IMG  border="0" height="17" src="gif/val_cluster.gif" alt="byCluster" width="15"><IMG  border="0" height="17" src="gif/val_freq.gif" alt="byFreq" width="15"><IMG  border="0" height="17" src="gif/val_2hit.gif" alt="with2hit" width="15"><IMG  border="0" height="17" src="gif/val_hapmap.gif" alt="withHapMapFreq" width="15"><IMG  border="0" height="17" src="gif/val_1000G.gif" alt="With1000GenomeData" width="15"><TABLE  ><TR  valign="top"><td ></td></TR><TR  valign="top"><td ><span  size="-1"><I>DoubleHit found by: </I>&nbsp<a href="snp_viewTable.cgi?h=BCM_SSAHASNP">BCM_SSAHASNP</a></span></td></TR></TABLE></td><td  style="text-align:left">UNKNOWN</td><td  style="text-align:left">UNKNOWN</td><td  style="text-align:left">UNKNOWN</td></TR></TABLE><!--start printTemplateBottom-->
+</TD></TR></TABLE>
+
+<!--Bottom Link Start --><!-- #BeginLibraryItem "/Library/dbSNPTextLinks.lbi" --> 
+<!--Bottom Link Start -->
+<p> <b>GENERAL</b>: <a href="javascript:Help();">Contact Us</a> | <a href="index.html">Homepage</a> | <a href="http://www.ncbi.nlm.nih.gov/mailman/listinfo/dbsnp-announce" >Announcements</a> 
+  |<a href="snp_summary.cgi">dbSNP Summary</a> | <a href="http://www.nhgri.nih.gov/">Genome</a> 
+  | <a href="ftp://ftp.ncbi.nih.gov/snp/">FTP SERVER</a> | <a href="buildhistory.cgi">Build 
+  History</a> | <a href="handle.html">Handle Request</a> <br>
+  <b>DOCUMENTATION</b>: <a href="books/NBK3848">FAQ</a> 
+  | <a href="http://www.ncbi.nlm.nih.gov/books/NBK3848">Searchable FAQ Archive</a> | <a accesskey="G" href="get_html.cgi?whichHtml=overview" >Overview</a> | 
+  <a href="how_to_submit.html">How to Submit</a> | <a accesskey="I" href="get_html.cgi?whichHtml=verbose" >RefSNP 
+  Summary Info</a> | <a accesskey="J" href="ftp://ftp.ncbi.nih.gov/snp/database/erd_dbSNP.pdf" >Database 
+  Schema</a><br>
+  <b>SEARCH</b>:  <a href="http://www.ncbi.nlm.nih.gov:80/entrez/query.fcgi?db=Snp">Entrez SNP</a> | <a href="http://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&BLAST_SPEC=SNP&BLAST_PROGRAMS=megaBlast&PAGE_TYPE=BlastSearch&SHOW_DEFAULTS=on&LINK_LOC=dbSNP_homepage">Blast SNP</a> | <a accesskey="M" href="batchquery.html" >Batch Query</a> | 
+  <a href="snp_tableList.cgi?type=submitter" > By Submitter</a> |<a accesskey="O" href="snp_batchSearch.cgi?in
+it=y" >New 
+  Batches</a> | <a href="snp_tableList.cgi?type=method" >Method</a> | <a href="snp_tableList.cgi?type=pop" >Population</a> 
+  | <a href="snp_tableList.cgi?type=pub" >Publication</a>
+  <!--  | <a href="../maplists/maplist-newmap.html" >Chromosome Report</a> -->| <a href="index.html#Batch">Batch</a> 
+  | <a href="index.html#Locus">Locus Info</a> | <a href="index.html#Markers">Between 
+  Marker <br>
+  </a> <!-- <b>HAPLOTYPE</b>:<a  href="../hap/dbSNP_haplotype_intro.html">Submission</a> | <a href="../HapMap/index.html">Specifications</a> | <a href="../hapset.cgi?hapset_id=1">Sample HapSet</a> | 
+  <a href="../hap_ind.cgi?ind_id=3">Sample Individual</a><br> -->
+  <b>NCBI</b>: <a href="/PubMed/">PubMed</a> | <a href="/">Entrez</a> | 
+  <a href="/BLAST/">BLAST</a> | <a href="/omim/">OMIM</a> | <a href="/Taxonomy/taxonomyhome.html">Taxonomy</a> 
+  | <a href="/Structure/">Structure</a> </p>
+<p><a href="http://www.ncbi.nlm.nih.gov/About/disclaimer.html"
+class="SMALL1">Disclaimer</a> &nbsp;&nbsp;&nbsp;&nbsp;<a
+href="http://www.nlm.nih.gov/privacy.html"
+class="SMALL1">Privacy statement</a></p> 
+<!-- #EndLibraryItem --><!-- #EndEditable --> <br>
+  </tr>
+</table>
+<!--  end of content  -->
+<script type="text/javascript" src="/portal/portal3rc.fcgi/rlib/js/InstrumentOmnitureBaseJS/InstrumentNCBIBaseJS/InstrumentPageStarterJS.js"></script>
+</body>
+<!--  the header   -->
+<!-- #EndTemplate --></html>
