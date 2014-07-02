@@ -1,41 +1,85 @@
 #!/bin/python
 from mechanize import Browser
 from bs4 import BeautifulSoup
-
-mech = Browser()
-
-#url = "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=9606708"
-#page = mech.open(url)
-
-#html = page.read()
-file = open("sample_ncbi.html")
-html = file.read()
-soup = BeautifulSoup(html)
-
-table = soup.find(id="Allele")
-#rows = table.find(lambda tag: tag.name=='td')
-rows = table.contents
-#print(table)
-#print ("printing the rows?")
-#print(rows)
+import sys, getopt 
+import csv
+import re
+import collections
 
 
-#print(soup.prettify())
+def ncbiUrlBuilder(snp):
+    #url = "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=9606708"
+    print 'attempting to query', snp
+    snpNumber = snp[2:(len(snp))]
+    #url = "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=9606708"
+    url = "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?" + "rs=" + snpNumber
+    print 'trying url: ' + url 
+    mech = Browser()
+    page = mech.open(url)
+    return page, snp
 
-print "test"
-print (table.prettify())
 
-print "testing"
-#for row in table:
-#    print(row.contents)
 
-print(rows)
+def tablechopper(pageinfo):
+    soup = BeautifulSoup(pageinfo[0])
+    table = soup.find(id="Allele")
+    rows = table.contents
 
-#table = soup.find(lambda tag: tag.name=='TABLE' and tag.has_key('id') and tag['id']=="RefSNP") 
-#rows = table.find(lambda tag: tag.name=='tr')
+    rowlist = []
+    for item in rows:
+        rowlist.append(item.text)
 
-#for row in soup.findAll(id='Allele')[0].tbody.findAll('tr'):
-#    first_column = row.findAll('th')[0].contents
-#    second_column = row.findAll('td')[1].contents
-#    print first_column, second_column
 
+    #rstrip strips trailing whitespace; these have pesky \n's in them
+    rowlist[0] = rowlist[0] + ":" + pageinfo[1].rstrip()
+
+    newlist = []
+    for item in rowlist:
+        newlist.append(item.split(':'))
+#    headerList = []
+    finalList = []
+    for item in newlist:
+        #        headerList.append(item[0])
+        finalList.append(item[1])
+    return(finalList)
+
+
+def main(argv):
+    inputfile = ''
+    outputfile = ''
+    try:
+        opts, args = getopt.getopt(argv,"thi:o:",["ifile=","oufile="])
+    except getopt.GetoptError:
+        print 'usage: ncbi_scrape.py -i <inputfile> -o <outputfile>'
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt == '-h':
+            print 'usage: ncbi_scrape.py -i <inputfile> -o <outputfile>'
+            sys.exit()
+        elif opt == '-t':
+            print 'entering test mode, using sample_ncbi.html'
+        elif opt in ("-i", "--ifile"):
+            inputfile = arg
+        elif opt in ("-o", "--ofile"):
+            outputfile = arg
+
+    print 'inputfile is', inputfile
+    print 'outputfile is', outputfile
+
+
+    with open(inputfile) as f:
+        for line in f:
+            html = ncbiUrlBuilder(line)
+            writeAllele = tablechopper(html)
+            print ",".join(writeAllele)
+            length = len(writeAllele)
+            with open(outputfile, "a") as writefile:
+                writer = csv.writer(writefile, delimiter=',')
+                writer.writerow(writeAllele)
+
+            
+            
+    
+
+if __name__ == "__main__":
+    main(sys.argv[1:])
