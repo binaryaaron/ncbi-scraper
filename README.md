@@ -10,7 +10,7 @@ and will require the following python pacakges:
 
 and I reccomend you install them using [Pip](https://pypi.python.org/pypi/pip) using the following commands:
 
-	pip install bs4
+	pip install beautifulsoup4
 	pip install mechanize
 
 and it should run just fine from there. 
