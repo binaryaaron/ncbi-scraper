@@ -9,6 +9,7 @@ and will require the following python pacakges:
 * [Mechanize](http://wwwsearch.sourceforge.net/mechanize/)
 
 and I reccomend you install them using [Pip](https://pypi.python.org/pypi/pip) using the following commands:
+
 	pip install bs4
 	pip install mechanize
 
