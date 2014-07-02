@@ -77,9 +77,7 @@ def main(argv):
                 writer = csv.writer(writefile, delimiter=',')
                 writer.writerow(writeAllele)
 
-            
-            
-    
+    print 'done'
 
 if __name__ == "__main__":
     main(sys.argv[1:])
