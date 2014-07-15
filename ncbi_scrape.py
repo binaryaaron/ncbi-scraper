@@ -2,6 +2,7 @@
 from mechanize import Browser
 from bs4 import BeautifulSoup
 import sys, getopt 
+import argparse
 import csv
 import re
 import collections
@@ -9,17 +10,17 @@ import collections
 
 
 def ncbiUrlBuilder(snp):
-""" ncbiUrlBuilder builds the url used by NCBI to query a particular SNP. 
-an example url for snp rs96066708 is below:
-http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=9606708
-and will give the information page for that SNP. It builds the URL based on
-the base URL from the ncbi site and concatenates it with some simple string
-building tools. 
-The URL is passed to mechanize/Browser to open the site, and the opened page
-is returned to the program.
-Arguments:
-snp -- the snp id. 
-"""
+    """ncbiUrlBuilder builds the url used by NCBI to query a particular SNP. 
+    an example url for snp rs96066708 is below:
+    http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=9606708
+    and will give the information page for that SNP. It builds the URL based on
+    the base URL from the ncbi site and concatenates it with some simple string
+    building tools. 
+    The URL is passed to mechanize/Browser to open the site, and the opened page
+    is returned to the program.
+    Arguments:
+        snp -- the snp id. 
+    """
     #url = "http://www.ncbi.nlm.nih.gov/projects/SNP/snp_ref.cgi?rs=9606708"
     print 'attempting to query', snp
     snpNumber = snp[2:(len(snp))]
@@ -30,14 +31,14 @@ snp -- the snp id.
     return page, snp
 
 def tablechopper(pageinfo):
-"""tablechopper is the primary workhorse of the program. 
-It uses BeautifulSoup to parse the page opened by ncbiUrlBuilder 
-and then adds the contents of the Allele table to a list (finalList),
-which is returned to the program.
-Arguments:
-    pageinfo -- list that contains the ncbiUrlBuilder page and the
-                snp number.
-"""
+    """tablechopper is the primary workhorse of the program. 
+    It uses BeautifulSoup to parse the page opened by ncbiUrlBuilder 
+    and then adds the contents of the Allele table to a list (finalList),
+    which is returned to the program.
+    Arguments:
+        pageinfo -- list that contains the ncbiUrlBuilder page and the
+                    snp number.
+    """
     soup = BeautifulSoup(pageinfo[0])
     table = soup.find(id="Allele")
     rows = table.contents
@@ -61,29 +62,18 @@ Arguments:
     return(finalList)
 
 
-def main(argv):
-    inputfile = ''
-    outputfile = ''
-    try:
-        opts, args = getopt.getopt(argv,"thi:o:",["ifile=","oufile="])
-    except getopt.GetoptError:
-        print 'usage: ncbi_scrape.py -i <inputfile> -o <outputfile>'
-        sys.exit(2)
-    for opt, arg in opts:
-        if opt == '-h':
-            print 'usage: ncbi_scrape.py -i <inputfile> -o <outputfile>'
-            sys.exit()
-        elif opt == '-t':
-            print 'entering test mode, using sample_ncbi.html'
-        elif opt in ("-i", "--ifile"):
-            inputfile = arg
-        elif opt in ("-o", "--ofile"):
-            outputfile = arg
-
-    print 'inputfile is', inputfile
-    print 'outputfile is', outputfile
-
-
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description = "NCBI Scraper")
+    parser.add_argument('-i', "--inputfile", metavar='inputfile',
+                        nargs='+', help='the input file')
+    parser.add_argument('-o', "--outputfile", metavar='outputfile', 
+                        nargs='+', help = 'the file to which output will be
+                        written')
+    args = parser.parse_args()
+    inputfile = args.inputfile[0]
+    outputfile = args.outputfile[0]
+    print 'the inputfile is', inputfile
+    print 'the outputfile is', outputfile
     with open(inputfile) as f:
         for line in f:
             html = ncbiUrlBuilder(line)
@@ -96,5 +86,3 @@ def main(argv):
 
     print 'done'
 
-if __name__ == "__main__":
-    main(sys.argv[1:])
