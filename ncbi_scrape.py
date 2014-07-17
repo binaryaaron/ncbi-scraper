@@ -41,8 +41,13 @@ def tablechopper(pageinfo):
     """
     soup = BeautifulSoup(pageinfo[0])
     table = soup.find(id="Allele")
+    #checks to see if the type None was applied to the beautifulsoup object
+    #if so, it returns nothing
+    if table == None:
+        print 'allele id not found or merged; adding NA to csv'
+        errorlist = [pageinfo[1].rstrip(), 'NA','NA','NA','NA','NA','NA','NA']
+        return errorlist
     rows = table.contents
-
     rowlist = []
     for item in rows:
         rowlist.append(item.text)
@@ -67,8 +72,7 @@ if __name__ == "__main__":
     parser.add_argument('-i', "--inputfile", metavar='inputfile',
                         nargs='+', help='the input file')
     parser.add_argument('-o', "--outputfile", metavar='outputfile', 
-                        nargs='+', help = 'the file to which output will be
-                        written')
+                        nargs='+', help = 'the file to which output will be written')
     args = parser.parse_args()
     inputfile = args.inputfile[0]
     outputfile = args.outputfile[0]
