@@ -66,6 +66,13 @@ def tablechopper(pageinfo):
         finalList.append(item[1])
     return(finalList)
 
+def searchfile(fname):
+    txtFile = open(fname, "r")
+    searchList = []
+    for line in txtFile:
+        line_split = line.rstrip("\n").split(',')
+        searchList.append(line_split[0])
+    return searchList
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "NCBI Scraper")
@@ -78,15 +85,22 @@ if __name__ == "__main__":
     outputfile = args.outputfile[0]
     print 'the inputfile is', inputfile
     print 'the outputfile is', outputfile
+
+    searchlist = searchfile(outputfile)
+#    print searchlist
     with open(inputfile) as f:
         for line in f:
-            html = ncbiUrlBuilder(line)
-            writeAllele = tablechopper(html)
-            print ",".join(writeAllele)
-            length = len(writeAllele)
-            with open(outputfile, "a") as writefile:
-                writer = csv.writer(writefile, delimiter=',')
-                writer.writerow(writeAllele)
+            if line.rstrip("\n") not in searchlist:
+                html = ncbiUrlBuilder(line)
+                writeAllele = tablechopper(html)
+                print ",".join(writeAllele)
+                length = len(writeAllele)
+
+                with open(outputfile, "a") as writefile:
+                    writer = csv.writer(writefile, delimiter=',')
+                    writer.writerow(writeAllele)
+            else:
+                print 'found the number already in outputfile, skipping', line
 
     print 'done'
 
