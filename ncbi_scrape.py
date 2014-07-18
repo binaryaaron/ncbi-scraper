@@ -1,13 +1,8 @@
 #!/bin/python
 from mechanize import Browser
 from bs4 import BeautifulSoup
-import sys, getopt 
-import argparse
-import csv
-import re
-import collections
-
-
+from collections import defaultdict
+import sys, getopt ,argparse ,csv ,re ,collections
 
 def ncbiUrlBuilder(snp):
     """ncbiUrlBuilder builds the url used by NCBI to query a particular SNP. 
@@ -54,7 +49,7 @@ def tablechopper(pageinfo):
 
 
     #rstrip strips trailing whitespace; these have pesky \n's in them
-    rowlist[0] = rowlist[0] + ":" + pageinfo[1].rstrip()
+    rowlist[0] = rowlist[0] + ":" + pageinfo[1]
 
     newlist = []
     for item in rowlist:
@@ -70,9 +65,18 @@ def searchfile(fname):
     txtFile = open(fname, "r")
     searchList = []
     for line in txtFile:
-        line_split = line.rstrip("\n").split(',')
+        line_split = line.split(',')
         searchList.append(line_split[0])
     return searchList
+
+def hashSNPS(fname):
+    result = defaultdict(list)
+    with open(fname,"r") as text:
+        for line in text:
+            key = line.split(',')[0]
+            result[key]
+    return result
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description = "NCBI Scraper")
@@ -83,14 +87,21 @@ if __name__ == "__main__":
     args = parser.parse_args()
     inputfile = args.inputfile[0]
     outputfile = args.outputfile[0]
-    print 'the inputfile is', inputfile
-    print 'the outputfile is', outputfile
+#    print 'the inputfile is', inputfile
+#    print 'the outputfile is', outputfile
 
-    searchlist = searchfile(outputfile)
+#    searchlist = searchfile(outputfile)
+    rsdict = hashSNPS(outputfile)
+#    print 'printing dictionary'
+#    print rsdict.keys()
+#    print rsdict.values()
 #    print searchlist
     with open(inputfile) as f:
         for line in f:
-            if line.rstrip("\n") not in searchlist:
+            line = line.rstrip()
+#            print (rsdict.has_key(line))
+            if not rsdict.has_key(line):
+#            if line not in searchlist:
                 html = ncbiUrlBuilder(line)
                 writeAllele = tablechopper(html)
                 print ",".join(writeAllele)
